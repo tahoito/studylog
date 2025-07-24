@@ -34,7 +34,8 @@ class StudyLogController extends Controller
         ]);
 
         StudyLog::create([
-            'user_id' => Auth::id(),
+            //'user_id' => Auth::id(),
+            'user_id' => 1,
             'subject' => $request->subject,
             'minutes' => $request->minutes,
             'study_date' => $request->study_date,
