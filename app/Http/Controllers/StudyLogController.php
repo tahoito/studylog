@@ -40,7 +40,7 @@ class StudyLogController extends Controller
             'study_date' => $request->study_date,
         ]);
 
-        return redirect()-route('study-logs.index')->with('success','勉強記録を追加しました');
+        return redirect()->route('study-logs.index')->with('success','勉強記録を追加しました');
 
     }
 
