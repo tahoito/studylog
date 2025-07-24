@@ -1,7 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudyLogController;
+use App\Http\Controllers\StudyLogController; 
 
-Route::get('/study-logs',[StudyLogController::class,'index']);
-Route::post('/study-logs',[StudyLogController::class,'store']);
+Route::get('/study-logs', [StudyLogController::class, 'index'])->name('study-logs.index');
+Route::post('/study-logs', [StudyLogController::class, 'store'])->name('study-logs.store');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
