@@ -10,7 +10,8 @@ class StudyLogController extends Controller
 {
     public function index()
     {
-        $logs = StudyLog::where('user_id',Auth::id())
+        //$logs = StudyLog::where('user_id',Auth::id())
+        $logs = StudyLog::where('user_id',1)
             ->orderBy('study_date','desc')
             ->get();
         return view('study_logs.index',compact('logs'));
